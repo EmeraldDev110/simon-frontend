@@ -38,96 +38,75 @@ export default function OneView() {
   const [drawOpened, setDrawerOpened] = useState(false);
 
   return (
-    <Box>
-      {/* Yellow Section */}
-      <Box sx={{ bgcolor: '#FFCC00', py: 5 }}>
-        <Container maxWidth={false}>
-          <Typography variant="h4"> STAKING </Typography>
-
-          {/* Top Cards Section */}
-          <Box
-            sx={{
-              mt: 5,
-              mb: 3,
-              width: 1,
-              borderRadius: 2,
-              bgcolor: (theme) => alpha(theme.palette.grey[500], 0.04),
-              border: (theme) => `dashed 1px ${theme.palette.divider}`,
-              p: 2,
-            }}
-          >
-            <Grid container spacing={2}>
-              <Grid item xs={3}>
-                <StakingInfoCard
-                  backgroundColor="linear-gradient(180deg, rgba(123,31,162,1) 0%, rgba(94,53,177,1) 100%)"
-                  textColor="#fff"
-                  title="36,310,198 AIT"
-                  subtitle="STAKED AIT TOKENS"
-                />
-              </Grid>
-              <Grid item xs={3}>
-                <StakingInfoCard
-                  backgroundColor="#E3F2FD"
-                  textColor="#1E88E5"
-                  title="$3,516,534 USD"
-                  subtitle="TOKEN VALUE LOCKED"
-                />
-              </Grid>
-              <Grid item xs={3}>
-                <StakingInfoCard
-                  backgroundColor="linear-gradient(180deg, rgba(123,31,162,1) 0%, rgba(94,53,177,1) 100%)"
-                  textColor="#fff"
-                  title="0 AIT / $0"
-                  subtitle="YOUR STAKED TOKENS"
-                />
-              </Grid>
-              <Grid item xs={3}>
-                <StakingInfoCard
-                  backgroundColor="#E3F2FD"
-                  textColor="#1E88E5"
-                  title="0 AIT / $0"
-                  subtitle="YOUR TOTAL REWARD"
-                />
-              </Grid>
-            </Grid>
-          </Box>
-        </Container>
+    <Container maxWidth={false} sx={{ bgcolor: '#0060A9', height: '100%' }}>
+      {/* Top Cards Section */}
+      <Box
+        sx={{
+          mt: 5,
+          mb: 3,
+          width: 1,
+          borderRadius: 2,
+          bgcolor: (theme) => alpha(theme.palette.grey[500], 0.04),
+          border: (theme) => `dashed 1px ${theme.palette.divider}`,
+          p: 2,
+        }}
+      >
+        <Grid container spacing={2}>
+          <Grid item xs={6} md={3}>
+            <StakingInfoCard
+              backgroundColor="linear-gradient(180deg, rgba(123,31,162,1) 0%, rgba(94,53,177,1) 100%)"
+              textColor="#fff"
+              title="36,310,198 AIT"
+              subtitle="STAKED AIT TOKENS"
+            />
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <StakingInfoCard
+              backgroundColor="#E3F2FD"
+              textColor="#1E88E5"
+              title="$3,516,534 USD"
+              subtitle="TOKEN VALUE LOCKED"
+            />
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <StakingInfoCard
+              backgroundColor="linear-gradient(180deg, rgba(123,31,162,1) 0%, rgba(94,53,177,1) 100%)"
+              textColor="#fff"
+              title="0 AIT / $0"
+              subtitle="YOUR STAKED TOKENS"
+            />
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <StakingInfoCard
+              backgroundColor="#E3F2FD"
+              textColor="#1E88E5"
+              title="0 AIT / $0"
+              subtitle="YOUR TOTAL REWARD"
+            />
+          </Grid>
+        </Grid>
+      </Box>
+      <Box
+        sx={{
+          mb: 3,
+          p: 2,
+          bgcolor: (theme) => alpha(theme.palette.grey[500], 0.04),
+          borderRadius: 2,
+        }}
+      >
+        <PoolCard onStakeButtonClick={() => setDrawerOpened(true)} />
+      </Box>
+      <Box
+        sx={{
+          p: 2,
+          bgcolor: (theme) => alpha(theme.palette.grey[500], 0.04),
+          borderRadius: 2,
+        }}
+      >
+        <PoolCard onStakeButtonClick={() => setDrawerOpened(true)} mode="Closed" />
       </Box>
 
-      {/* Blue Section */}
-      <Box sx={{ bgcolor: '#0033A0', py: 5 }}>
-        <Container maxWidth={false}>
-          {/* Active Pools Section */}
-          <Box
-            sx={{
-              mb: 3,
-              p: 2,
-              bgcolor: (theme) => alpha(theme.palette.grey[500], 0.04),
-              borderRadius: 2,
-            }}
-          >
-            <PoolCard onStakeButtonClick={() => setDrawerOpened(true)} />
-          </Box>
-        </Container>
-      </Box>
-
-      {/* Red Section */}
-      <Box sx={{ bgcolor: '#D52B1E', py: 5 }}>
-        <Container maxWidth={false}>
-          {/* Closed Pools Section */}
-          <Box
-            sx={{
-              p: 2,
-              bgcolor: (theme) => alpha(theme.palette.grey[500], 0.04),
-              borderRadius: 2,
-            }}
-          >
-            <PoolCard onStakeButtonClick={() => setDrawerOpened(true)} mode="Closed" />
-          </Box>
-
-          <StakingDrawer open={drawOpened} onClose={() => setDrawerOpened(false)} />
-        </Container>
-      </Box>
-    </Box>
+      <StakingDrawer open={drawOpened} onClose={() => setDrawerOpened(false)} />
+    </Container>
   );
 }

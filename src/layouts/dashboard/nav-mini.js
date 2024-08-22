@@ -23,7 +23,7 @@ export default function NavMini() {
   return (
     <Box
       component="nav"
-      sx={{ bgcolor: '#0033A0', flexShrink: { lg: 0 }, width: { lg: NAV.W_MINI } }}
+      sx={{ bgcolor: '#A82400', flexShrink: { lg: 0 }, width: { lg: NAV.W_MINI } }}
     >
       <NavToggleButton
         sx={{

@@ -71,7 +71,7 @@ export default function NavVertical({ openNav, onCloseNav }) {
       sx={{
         flexShrink: { lg: 0 },
         width: { lg: NAV.W_VERTICAL },
-        bgcolor: '#0033A0', // Set background color here
+        bgcolor: '#A82400',
       }}
     >
       <NavToggleButton />
@@ -83,7 +83,6 @@ export default function NavVertical({ openNav, onCloseNav }) {
             position: 'fixed',
             width: NAV.W_VERTICAL,
             borderRight: (theme) => `dashed 1px ${theme.palette.divider}`,
-            bgcolor: '#0033A0', // Ensure background color here
           }}
         >
           {renderContent}
@@ -95,7 +94,6 @@ export default function NavVertical({ openNav, onCloseNav }) {
           PaperProps={{
             sx: {
               width: NAV.W_VERTICAL,
-              bgcolor: '#0033A0', // Ensure background color here
             },
           }}
         >

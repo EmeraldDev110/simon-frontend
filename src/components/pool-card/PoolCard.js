@@ -1,5 +1,52 @@
+import React from 'react';
 import { Typography, Grid, Paper, Box } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import StakeButton from 'src/components/stake-button';
+
+const StyledPaper = styled(Paper)(({ theme }) => ({
+  borderRadius: '12px',
+  padding: '20px',
+  backgroundColor: '#f5f7fb',
+  border: '1px solid #e0e0e0',
+}));
+
+const Title = styled(Typography)(({ theme }) => ({
+  marginBottom: theme.spacing(2),
+  fontWeight: 'bold',
+  color: '#7B1FA2',
+  textTransform: 'uppercase',
+}));
+
+const HeaderCell = styled(Grid)(({ theme }) => ({
+  padding: '10px',
+  backgroundColor: '#E3F2FD',
+  textAlign: 'center',
+  fontWeight: 'bold',
+  minWidth: '120px',
+  display: 'flex',
+  alignItems: 'center',
+}));
+
+const ContentRow = styled(Grid)(({ theme, index, length }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: '#fafafa',
+  },
+  borderBottom: index !== length - 1 ? '1px solid #e0e0e0' : 'none',
+}));
+
+const Cell = styled(Grid)({
+  padding: '10px',
+  textAlign: 'center',
+  minWidth: '120px',
+});
+
+const APRCell = styled(Typography)({
+  backgroundColor: '#B2DFDB',
+  borderRadius: '12px',
+  padding: '5px 10px',
+  textAlign: 'center',
+  fontWeight: 'bold',
+});
 
 const PoolCard = ({ onStakeButtonClick, mode = 'Active' }) => {
   const pools = [
@@ -27,142 +74,78 @@ const PoolCard = ({ onStakeButtonClick, mode = 'Active' }) => {
   ];
 
   return (
-    <Paper
-      elevation={3}
-      sx={{
-        borderRadius: '12px',
-        padding: '20px',
-        backgroundColor: '#f5f7fb',
-        border: '1px solid #e0e0e0',
-      }}
-    >
-      <Typography
-        variant="h6"
-        sx={{
-          mb: 2,
-          fontWeight: 'bold',
-          color: '#7B1FA2',
-          textTransform: 'uppercase',
-        }}
-      >
-        {`${mode.toUpperCase()} POOLS`}
-      </Typography>
-
-      {/* Header Row */}
-      <Grid container spacing={0} alignItems="center" sx={{ borderBottom: '1px solid #e0e0e0' }}>
-        <Grid item xs={2} sx={{ padding: '10px', backgroundColor: '#E3F2FD', textAlign: 'center' }}>
-          <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-            POOLS
-          </Typography>
-        </Grid>
-        <Grid
-          item
-          xs={2.5}
-          sx={{ padding: '10px', backgroundColor: '#E3F2FD', textAlign: 'center' }}
-        >
-          <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-            VERSION
-          </Typography>
-        </Grid>
-        {mode === 'Active' && (
-          <Grid
-            item
-            xs={2.5}
-            sx={{ padding: '10px', backgroundColor: '#E3F2FD', textAlign: 'center' }}
-          >
-            <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-              WTAO REWARDS
-            </Typography>
-          </Grid>
-        )}
-        <Grid
-          item
-          xs={mode === 'Active' ? 2 : 4.5}
-          sx={{ padding: '10px', backgroundColor: '#E3F2FD', textAlign: 'center' }}
-        >
-          <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-            ETH REWARDS
-          </Typography>
-        </Grid>
-        <Grid item xs={1} sx={{ padding: '10px', backgroundColor: '#E3F2FD', textAlign: 'center' }}>
-          <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-            APR
-          </Typography>
-        </Grid>
-        <Grid item xs={1} sx={{ padding: '10px', backgroundColor: '#E3F2FD', textAlign: 'center' }}>
-          <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-            LOCK TERM
-          </Typography>
-        </Grid>
-        <Grid item xs={1} sx={{ padding: '10px', backgroundColor: '#E3F2FD', textAlign: 'center' }}>
-          <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-            STAKED TOKENS
-          </Typography>
-        </Grid>
-      </Grid>
-
-      {/* Content Rows */}
-      {pools.map((pool, index) => (
-        <Grid
-          container
-          spacing={0}
-          alignItems="center"
-          key={index}
-          sx={{
-            borderBottom: index !== pools.length - 1 ? '1px solid #e0e0e0' : 'none',
-            '&:nth-of-type(odd)': {
-              backgroundColor: '#fafafa',
-            },
-          }}
-        >
-          <Grid
-            item
-            xs={2}
-            sx={{
-              padding: '10px',
-              textAlign: 'center',
-              display: 'flex',
-              justifyContent: 'space-around',
-              alignItems: 'center',
-            }}
-          >
-            <img src="/favicon/logo.png" width={56} height={24} />
-            <StakeButton onClick={onStakeButtonClick} />
-          </Grid>
-          <Grid item xs={2.5} sx={{ padding: '10px', textAlign: 'center' }}>
-            <Typography variant="body2">{pool.version}</Typography>
-          </Grid>
+    <StyledPaper elevation={3}>
+      <Title variant="h6">{`${mode.toUpperCase()} POOLS`}</Title>
+      <Box sx={{ overflowX: 'auto' }}>
+        {/* Header Row */}
+        <Grid container spacing={0} wrap="nowrap" alignItems="stretch">
+          <HeaderCell item md={2}>
+            <Typography variant="body2">POOLS</Typography>
+          </HeaderCell>
+          <HeaderCell item md={2.5}>
+            <Typography variant="body2">VERSION</Typography>
+          </HeaderCell>
           {mode === 'Active' && (
-            <Grid item xs={2.5} sx={{ padding: '10px', textAlign: 'center' }}>
-              <Typography variant="body2">N/A</Typography>
-            </Grid>
+            <HeaderCell item md={2.5}>
+              <Typography variant="body2">WTAO REWARDS</Typography>
+            </HeaderCell>
           )}
-          <Grid item xs={mode === 'Active' ? 2 : 4.5} sx={{ padding: '10px', textAlign: 'center' }}>
-            <Typography variant="body2">{pool.ethRewards}</Typography>
-          </Grid>
-          <Grid item xs={1} sx={{ padding: '10px', textAlign: 'center' }}>
-            <Typography
-              variant="body2"
-              sx={{
-                backgroundColor: '#B2DFDB',
-                borderRadius: '12px',
-                padding: '5px 10px',
-                textAlign: 'center',
-                fontWeight: 'bold',
-              }}
-            >
-              {pool.apr}
-            </Typography>
-          </Grid>
-          <Grid item xs={1} sx={{ padding: '10px', textAlign: 'center' }}>
-            <Typography variant="body2">{pool.lockTerm}</Typography>
-          </Grid>
-          <Grid item xs={1} sx={{ padding: '10px', textAlign: 'center' }}>
-            <Typography variant="body2">{pool.stakedTokens}</Typography>
-          </Grid>
+          <HeaderCell item md={mode === 'Active' ? 2 : 4.5}>
+            <Typography variant="body2">ETH REWARDS</Typography>
+          </HeaderCell>
+          <HeaderCell item md={1}>
+            <Typography variant="body2">APR</Typography>
+          </HeaderCell>
+          <HeaderCell item md={1}>
+            <Typography variant="body2">LOCK TERM</Typography>
+          </HeaderCell>
+          <HeaderCell item md={1}>
+            <Typography variant="body2">STAKED TOKENS</Typography>
+          </HeaderCell>
         </Grid>
-      ))}
-    </Paper>
+        {/* Content Rows */}
+        {pools.map((pool, index) => (
+          <ContentRow
+            container
+            spacing={0}
+            alignItems="center"
+            key={index}
+            index={index}
+            length={pools.length}
+            wrap="nowrap"
+          >
+            <Cell
+              item
+              md={2}
+              sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}
+            >
+              <img src="/favicon/logo.png" width={56} height={24} alt="Pool Logo" />
+              <StakeButton onClick={onStakeButtonClick} />
+            </Cell>
+            <Cell item md={2.5}>
+              <Typography variant="body2">{pool.version}</Typography>
+            </Cell>
+            {mode === 'Active' && (
+              <Cell item md={2.5}>
+                <Typography variant="body2">N/A</Typography>
+              </Cell>
+            )}
+            <Cell item md={mode === 'Active' ? 2 : 4.5}>
+              <Typography variant="body2">{pool.ethRewards}</Typography>
+            </Cell>
+            <Cell item md={1}>
+              <APRCell variant="body2">{pool.apr}</APRCell>
+            </Cell>
+            <Cell item md={1}>
+              <Typography variant="body2">{pool.lockTerm}</Typography>
+            </Cell>
+            <Cell item md={1}>
+              <Typography variant="body2">{pool.stakedTokens}</Typography>
+            </Cell>
+          </ContentRow>
+        ))}
+      </Box>
+    </StyledPaper>
   );
 };
 
