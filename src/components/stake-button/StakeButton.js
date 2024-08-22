@@ -1,8 +1,9 @@
 import { Button } from '@mui/material';
 
-export default function StakeButton() {
+const StakeButton = ({ disabled = false, onClick }) => {
   return (
     <Button
+      disabled={disabled}
       variant="contained"
       sx={{
         background: 'linear-gradient(90deg, #fca5f1 0%, #b5ffff 100%)',
@@ -12,8 +13,11 @@ export default function StakeButton() {
         textTransform: 'none',
         width: '80px',
       }}
+      onClick={onClick}
     >
       Stake
     </Button>
   );
-}
+};
+
+export default StakeButton;

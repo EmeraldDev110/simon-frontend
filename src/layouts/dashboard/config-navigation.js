@@ -49,9 +49,9 @@ export function useNavData() {
       // OVERVIEW
       // ----------------------------------------------------------------------
       {
-        subheader: 'overview v5.5.0',
+        // subheader: 'overview v5.5.0',
         items: [
-          { title: 'Staking', path: paths.dashboard.root, icon: ICONS.dashboard },
+          { title: 'Staking', path: paths.dashboard.root, icon: ICONS.banking },
           // { title: 'two', path: paths.dashboard.two, icon: ICONS.ecommerce },
           // {
           //   title: 'three',

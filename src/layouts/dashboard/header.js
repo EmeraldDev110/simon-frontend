@@ -16,14 +16,6 @@ import SvgColor from 'src/components/svg-color';
 import { useSettingsContext } from 'src/components/settings';
 //
 import { HEADER, NAV } from '../config-layout';
-import {
-  Searchbar,
-  AccountPopover,
-  SettingsButton,
-  LanguagePopover,
-  ContactsPopover,
-  NotificationsPopover,
-} from '../_common';
 
 // ----------------------------------------------------------------------
 
@@ -52,19 +44,16 @@ export default function Header({ onOpenNav }) {
         </IconButton>
       )}
 
-      <Searchbar />
-
       <Stack
         flexGrow={1}
         direction="row"
         alignItems="center"
         justifyContent="flex-end"
         spacing={{ xs: 0.5, sm: 1 }}
-      >
-      </Stack>
+      ></Stack>
     </>
   );
-/* 
+  /* 
 </Stack> above were
 <LanguagePopover />
 

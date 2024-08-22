@@ -48,7 +48,7 @@ export default function NavVertical({ openNav, onCloseNav }) {
         },
       }}
     >
-      <Logo sx={{ mt: 3, ml: 4, mb: 1 }} />
+      <Logo sx={{ mt: 3, ml: 6, mb: 3 }} />
 
       <NavSectionVertical
         data={navData}
@@ -57,17 +57,21 @@ export default function NavVertical({ openNav, onCloseNav }) {
         }}
       />
 
-      <Box sx={{ flexGrow: 1 }} />
-
+      <Box
+        sx={{
+          flexGrow: 1,
+        }}
+      />
     </Scrollbar>
   );
-// </Scrollbar> above was <NavUpgrade />
+
   return (
     <Box
       component="nav"
       sx={{
         flexShrink: { lg: 0 },
         width: { lg: NAV.W_VERTICAL },
+        bgcolor: '#0033A0', // Set background color here
       }}
     >
       <NavToggleButton />
@@ -79,6 +83,7 @@ export default function NavVertical({ openNav, onCloseNav }) {
             position: 'fixed',
             width: NAV.W_VERTICAL,
             borderRight: (theme) => `dashed 1px ${theme.palette.divider}`,
+            bgcolor: '#0033A0', // Ensure background color here
           }}
         >
           {renderContent}
@@ -90,6 +95,7 @@ export default function NavVertical({ openNav, onCloseNav }) {
           PaperProps={{
             sx: {
               width: NAV.W_VERTICAL,
+              bgcolor: '#0033A0', // Ensure background color here
             },
           }}
         >
